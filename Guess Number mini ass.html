@@ -1,0 +1,82 @@
+<html>
+<head>
+    <title>Document</title>
+    <style>
+     body {
+    background-image: url('bg.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    }
+
+    button{
+    width: 160px;
+    padding: 15px 0;
+    border-radius: 5px;
+    background-color: #bfe224;
+    color: #000000;
+    border: none;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 30px;
+    outline: none;
+    }
+    p{
+    font-weight: 400;
+    }
+    </style>
+</head>
+<body>
+    
+   <div class="container">
+       <h1>Guess number from 0 between 100</h1>
+
+       <input type="text" placeholder="Num" id="guess"><br>
+       <button onclick="play()" id="my_btn">Guess</button>
+
+       <p id="message1">Number of guess: 0</p>
+       <p id="message2">Guessed Numbers are: None</p>
+       <p id="message3"></p>
+   </div>
+
+   <script>
+        var msg1 = document.getElementById("message1");
+        var msg2 = document.getElementById("message2");
+        var msg3 = document.getElementById("message3");
+
+        var answer = Math.floor(Math.random()*100) + 1;
+        var no_of_guesses = 0;
+        var guessed_nums = [];
+
+        function play(){
+        var user_guess = document.getElementById("guess").value;
+        if(user_guess < 0 || user_guess > 100){
+        alert("Please enter a number between 0 and 100.");
+        }
+        else{
+        guessed_nums.push(user_guess);
+        no_of_guesses+= 1;
+
+        if(user_guess < answer){
+            msg1.textContent = "Number  too low.";
+            msg2.textContent = "Number of guess: " + no_of_guesses;
+            msg3.textContent = "Guessed numbers are: " +
+            guessed_nums;
+        }
+        else if(user_guess > answer){
+            msg1.textContent = "Number  too high.";
+            msg2.textContent = "Number of guess: " + no_of_guesses;
+            msg3.textContent = "Guessed numbers are: " +
+            guessed_nums;
+        }
+        else if(user_guess == answer){
+            msg1.textContent = "Congrats,BINGO!!!";
+            msg2.textContent = "Your guess is: " + answer;
+            msg3.textContent = "Total times of guess is : "+ no_of_guesses + " guess";
+            document.getElementById("my_btn").disabled = true;
+        }
+    }
+}    
+   </script>
+</body>
+</html>
